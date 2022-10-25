@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Tala</string>
     <string name="action_settings">Settings</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -9,4 +10,42 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+
+    <string name="action_retry_str">Retry</string>
+    <string name="message_no_network_connected_str">No network connected!</string>
+    <string name="message_something_went_wrong_str">Something went wrong!</string>
+    <string name="message_search_results_for_str">Search results for %1s</string>
+
+    <string name="apply_for_loan_tag">Apply for a loan</string>
+    <string name="apply_loan_tag_caption">Qualify for loans up to %1s %2s over time.</string>
+    <string name="apply_loan_tag_caption_2">Repay on time to get loans up to %1s %2s.</string>
+    <string name="apply_for_loan_btn_tag">Apply Now</string>
+
+    <string name="loan_status_tag">My Tala Status</string>
+    <string name="loan_status_tag_caption">Track your progress over time</string>
+    <string name="loan_status_tag_caption_2">Grow your limit up to %1s %2s.</string>
+    <string name="loan_status_btn_tag">View Status</string>
+
+    <string name="invite_friends_tag">Invite friends, earn money!</string>
+
+    <string name="loan_stories_tag">\"Tala helped me with my dream\"</string>
+    <string name="loan_stories_btn_tag">Read More</string>
+
+    <string name="view_faqs_tag">View FAQs or send us a message</string>
+
+    <string name="approved_loan_tag">Your loan application is approved!</string>
+    <string name="approved_loan_tag_caption">You have been approved for %1s %2s.</string>
+    <string name="approved_for_loan_btn_tag">View Loan Offer</string>
+
+    <string name="paid_loan_tag">Your loan is fully paid!</string>
+    <string name="paid_loan_tag_caption">Apply for another loan any time you want and grow your limit.</string>
+
+    <string name="due_loan_tag">Your are on track!</string>
+    <string name="due_loan_amount_tag">%1s %2s</string>
+    <string name="due_loan_date_tag">is due tomorrow.</string>
+    <string name="due_loan_pay_btn_tag">Make a payment</string>
+    <string name="due_loan_how_to_pay_button_btn_tag">How to Repay</string>
+
+    <string name="message_load_user_loans_str">Loading more loans...</string>
 </resources>

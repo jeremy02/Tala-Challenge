@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="RtlSymmetry,HardcodedText,ContentDescription">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="userLoanItem"
+            type="com.example.myapplication.data.remote.responses.UserLoan" />
+
+        <variable
+            name="itemPosition"
+            type="java.lang.Integer" />
+
+        <variable
+            name="loanApplyLayoutVisible"
+            type="Boolean" />
+
+        <variable
+            name="loanApprovedLayoutVisible"
+            type="Boolean" />
+
+        <variable
+            name="loanPaidLayoutVisible"
+            type="Boolean" />
+
+        <variable
+            name="loanDueLayoutVisible"
+            type="Boolean" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_background"
+        android:paddingBottom="10dp">
+
+    <FrameLayout
+        android:id="@+id/loan_parent_frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp">
+
+        <include
+            android:id="@+id/loan_apply_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:userLoan="@{userLoanItem}"
+            app:itemPosition="@{itemPosition}"
+            layout="@layout/content_apply_loan"
+            android:visibility="@{loanApplyLayoutVisible ? View.VISIBLE: View.GONE, default=gone}"/>
+
+        <include
+            android:id="@+id/loan_approved_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:userLoan="@{userLoanItem}"
+            layout="@layout/content_approved_loan"
+            android:visibility="@{loanApprovedLayoutVisible ? View.VISIBLE: View.GONE, default=gone}"/>
+
+        <include
+            android:id="@+id/loan_paid_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:userLoanItem="@{userLoanItem}"
+            layout="@layout/content_paid_loan"
+            android:visibility="@{loanPaidLayoutVisible ? View.VISIBLE: View.GONE, default=gone}"/>
+
+        <include
+            android:id="@+id/loan_due_views_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:userLoan="@{userLoanItem}"
+            layout="@layout/content_due_loan"
+            android:visibility="@{loanDueLayoutVisible ? View.VISIBLE: View.GONE, default=gone}"/>
+
+    </FrameLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/loan_status_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="2dp"
+        app:cardElevation="2dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        android:layout_below="@+id/loan_parent_frame_layout"
+        android:background="?android:selectableItemBackground">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingVertical="10dp"
+            android:paddingStart="10dp">
+
+            <TextView
+                android:id="@+id/loan_status_tag"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="5"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="@string/loan_status_tag"
+                android:textColor="@color/primaryTextColor"/>
+
+            <ImageView
+                android:id="@+id/loan_status_img"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:alpha="0.5"
+                android:visibility="visible"
+                android:layout_marginStart="20dp"
+                android:scaleType="centerInside"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/img_blue_badge_large"
+                app:setLoanBadgeImage="@{userLoanItem.loan.level}"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                android:id="@+id/loan_status_tag_caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="@string/loan_status_tag_caption"
+                android:textColor="@color/color_primary_dark"
+                app:layout_constraintEnd_toEndOf="@+id/loan_status_tag"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/loan_status_tag"
+                app:layout_constraintTop_toBottomOf="@+id/loan_status_tag"
+                app:loanStatusTextToFormat="@{@string/loan_status_tag_caption_2}"
+                app:userLoanItem="@{userLoanItem}"/>
+
+            <Button
+                android:id="@+id/loan_status_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/loan_status_btn_tag"
+                android:textColor="@color/button_color"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:backgroundTint="@android:color/transparent"
+                app:elevation="4dp"
+                app:rippleColor="@color/button_color"
+                app:layout_constraintHorizontal_bias="0.0"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                app:layout_constraintEnd_toEndOf="@+id/loan_status_tag_caption"
+                app:layout_constraintStart_toStartOf="@+id/loan_status_tag_caption"
+                app:layout_constraintTop_toBottomOf="@+id/loan_status_tag_caption" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/loan_stories_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="2dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        android:layout_below="@+id/loan_status_layout"
+        android:background="?android:selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/loan_stories_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="false"
+            android:src="@drawable/img_story_card_ke"
+            app:setLoanStoryImage="@{userLoanItem.userLoanLocale}" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/image_blur_overlay"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/loan_stories_tag"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@string/loan_stories_tag"
+                android:textColor="@color/white"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/loan_stories_button"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:elevation="4dp"
+                app:rippleColor="@color/white"
+                android:text="@string/loan_stories_btn_tag"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:backgroundTint="@android:color/transparent"
+                app:layout_constraintEnd_toEndOf="@+id/loan_stories_tag"
+                app:layout_constraintStart_toStartOf="@+id/loan_stories_tag"
+                app:layout_constraintTop_toBottomOf="@+id/loan_stories_tag" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/invite_friends_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="2dp"
+        app:cardElevation="4dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        android:layout_below="@+id/loan_stories_layout"
+        android:background="?android:selectableItemBackground">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp">
+
+            <View
+                android:id="@+id/invite_friends_image"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ic_email"
+                android:backgroundTint="@color/primaryColor"
+                android:gravity="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/invite_friends_tag"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:gravity="center"
+                android:text="@string/invite_friends_tag"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/invite_friends_image"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/view_faqs_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="2dp"
+        app:cardElevation="4dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        android:layout_below="@+id/invite_friends_layout"
+        android:background="?android:selectableItemBackground">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp">
+
+            <View
+                android:id="@+id/view_faqs_image"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ic_help"
+                android:backgroundTint="@color/primaryColor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/view_faqs_tag"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="@string/view_faqs_tag"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/view_faqs_image"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    </RelativeLayout>
+
+</layout>

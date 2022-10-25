@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="ContentDescription">
+
+    <data>
+        <import type="android.view.View"/>
+
+        <variable
+            name="userLoan"
+            type="com.example.myapplication.data.remote.responses.UserLoan" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/loan_parent_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="2dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true"
+        app:cardPreventCornerOverlap="true"
+        android:background="?android:selectableItemBackground">
+
+        <RelativeLayout
+            android:id="@+id/loan_due_views_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:padding="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/due_loan_tag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_alignParentTop="true"
+                android:text="@string/due_loan_tag"/>
+
+            <TextView
+                android:id="@+id/due_loan_amount_tag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/due_loan_tag"
+                android:text="@string/due_loan_amount_tag"
+                android:textColor="@color/primaryColor"
+                android:textSize="48sp"
+                android:textStyle="bold"
+                app:stringToFormat="@{@string/due_loan_amount_tag}"
+                app:stringToFormatText="@{userLoan.userLoanLocale.currency ?? `Kshs`}"
+                app:stringToFormatText2="@{``+userLoan.loan.due ?? `0`}" />
+
+            <TextView
+                android:id="@+id/due_loan_date_tag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/due_loan_amount_tag"
+                android:text="@string/due_loan_date_tag"
+                android:textColor="@color/primaryColor"
+                android:textSize="28sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp"
+                android:layout_below="@+id/due_loan_date_tag">
+
+                <Button
+                    android:id="@+id/due_loan_pay_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:elevation="10dp"
+                    android:textSize="14sp"
+                    android:paddingHorizontal="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="@string/due_loan_pay_btn_tag"
+                    app:backgroundTint="@color/button_color"
+                    android:textColor="@android:color/white"
+                    app:rippleColor="@color/button_color"/>
+
+                <Button
+                    android:id="@+id/due_loan_how_to_pay_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:elevation="10dp"
+                    android:layout_marginStart="10dp"
+                    app:rippleColor="@color/button_color"
+                    app:backgroundTint="@android:color/transparent"
+                    android:text="@string/due_loan_how_to_pay_button_btn_tag"
+                    style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>
