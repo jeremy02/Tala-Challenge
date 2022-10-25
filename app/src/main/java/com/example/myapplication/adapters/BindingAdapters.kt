@@ -61,7 +61,7 @@ fun setFormattedDueText(textView: TextView, stringToFormat: String, stringToForm
 fun setFormattedDueDateText(textView: TextView, loanDateDue: Long?) {
     try {
         if(loanDateDue != null) {
-            textView.text = formatDate(1666801720000)
+            textView.text = formatDate(loanDateDue)
         } else{
             textView.text = R.string.due_loan_date_tag.toString()
         }
