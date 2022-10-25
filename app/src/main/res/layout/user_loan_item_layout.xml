@@ -135,7 +135,7 @@
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:text="@string/loan_status_tag_caption"
-                android:textColor="@color/color_primary_dark"
+                android:textColor="@color/primaryTextColor"
                 app:layout_constraintEnd_toEndOf="@+id/loan_status_tag"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/loan_status_tag"

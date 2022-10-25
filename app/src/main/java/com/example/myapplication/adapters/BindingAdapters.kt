@@ -6,6 +6,7 @@ import androidx.databinding.BindingAdapter
 import com.example.myapplication.R
 import com.example.myapplication.data.remote.responses.UserLoan
 import com.example.myapplication.model.CountryLocale
+import com.example.myapplication.utils.formatDate
 
 @BindingAdapter("setLoanBadgeImage")
 fun setLoanBadgeImage(view: ImageView, loanLevel: String?) {
@@ -54,4 +55,18 @@ fun setLoanStatusText(textView: TextView, loanStatusTextToFormat: String, userLo
 @BindingAdapter("stringToFormat", "stringToFormatText", "stringToFormatText2")
 fun setFormattedDueText(textView: TextView, stringToFormat: String, stringToFormatText: String, stringToFormatText2: String) {
     textView.text = String.format(stringToFormat, stringToFormatText.trim(), stringToFormatText2.trim())
+}
+
+@BindingAdapter("setFormattedDueDateText")
+fun setFormattedDueDateText(textView: TextView, loanDateDue: Long?) {
+    try {
+        if(loanDateDue != null) {
+            textView.text = formatDate(1666801720000)
+        } else{
+            textView.text = R.string.due_loan_date_tag.toString()
+        }
+
+    } catch (e: Exception) {
+        textView.text = R.string.due_loan_date_tag.toString()
+    }
 }

@@ -44,6 +44,8 @@
     <string name="due_loan_tag">Your are on track!</string>
     <string name="due_loan_amount_tag">%1s %2s</string>
     <string name="due_loan_date_tag">is due tomorrow.</string>
+    <string name="due_loan_date_tag_due">is due %1s.</string>
+    <string name="due_loan_date_tag_past">was due %1s.</string>
     <string name="due_loan_pay_btn_tag">Make a payment</string>
     <string name="due_loan_how_to_pay_button_btn_tag">How to Repay</string>
 

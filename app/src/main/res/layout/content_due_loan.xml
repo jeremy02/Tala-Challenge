@@ -61,7 +61,8 @@
                 android:layout_below="@+id/due_loan_amount_tag"
                 android:text="@string/due_loan_date_tag"
                 android:textColor="@color/primaryColor"
-                android:textSize="28sp" />
+                android:textSize="28sp"
+                app:setFormattedDueDateText="@{userLoan.loan.dueDate}" />
 
             <LinearLayout
                 android:layout_width="match_parent"
