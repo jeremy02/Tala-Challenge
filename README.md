@@ -1,4 +1,4 @@
-<p align="center"><a href="https://safeboda.com/ke/" target="_blank"><img src="" width="400"></a></p>
+<p align="center"><a href="https://safeboda.com/ke/" target="_blank"><img src="https://github.com/jeremy02/Tala-Challenge/blob/main/public/tala_logo.png" width="400"></a></p>
 
 # CASE STUDY FOR Senior Android Engineer (Kotlin) - [Tala](https://tala.co/)
 
