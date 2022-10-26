@@ -16,15 +16,14 @@
         <variable
             name="itemPosition"
             type="java.lang.Integer" />
+
     </data>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/loan_parent_layout"
+        android:id="@+id/loan_apply_parent_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="2dp"
-        android:clickable="true"
-        android:focusable="true"
         app:cardElevation="2dp"
         app:cardUseCompatPadding="true"
         app:cardPreventCornerOverlap="true"
@@ -87,14 +86,14 @@
                     android:id="@+id/apply_loan_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:elevation="10dp"
+                    android:textSize="14sp"
+                    android:paddingHorizontal="10dp"
+                    android:layout_marginEnd="10dp"
                     android:text="@string/apply_for_loan_btn_tag"
                     app:backgroundTint="@color/button_color"
                     android:textColor="@android:color/white"
-                    app:rippleColor="@color/button_color"
-                    app:elevation="10dp"
-                    android:textSize="16sp"
-                    android:paddingVertical="10dp"
-                    android:paddingHorizontal="16dp" />
+                    app:rippleColor="@android:color/transparent" />
 
             </LinearLayout>
 

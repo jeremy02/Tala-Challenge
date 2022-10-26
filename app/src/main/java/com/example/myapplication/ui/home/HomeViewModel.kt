@@ -9,6 +9,7 @@ import com.example.myapplication.data.remote.responses.Locales
 import com.example.myapplication.data.remote.responses.UserLoan
 import com.example.myapplication.data.usecases.FetchLocalesUseCase
 import com.example.myapplication.data.usecases.FetchUserLoansUseCase
+import com.example.myapplication.utils.AppConstants
 import com.wajahatkarim3.imagine.data.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -40,7 +41,7 @@ class HomeViewModel @Inject constructor(
 
     // will be used for pagination or simulate pagination
     private var pageNumber = 1
-    private var itemsPageLimit = 15
+    private var itemsPageLimit = 15 // AppConstants.API.ITEMS_PER_PAGE
     var fromIndex: Int = 0
     var toIndex: Int = itemsPageLimit - 1
 
@@ -95,7 +96,7 @@ class HomeViewModel @Inject constructor(
     }
 
     // Get or Load all the Loans for all Users
-    fun fetchAllLoans(page: Int) {
+    private fun fetchAllLoans(page: Int) {
         _uiState.postValue(if (page == 1) LoadingState else LoadingNextPageState)
 
         // Since Our Api or data has no support for pagination, we are going to simulate pagination
@@ -134,12 +135,6 @@ class HomeViewModel @Inject constructor(
                 // Add a Delay for simulation of loading scroll'
                 delay(2500)
 
-                // Add the initial Data from {_userLoansPaginatedList} MutableLiveData
-                val currentUserLoansList = arrayListOf<UserLoan>()
-                _userLoansPaginatedList.value?.let {
-                    currentUserLoansList.addAll(it)
-                }
-
                 // Get the full list of user loans data from {_userLoansPaginatedList} MutableLiveData
                 // to calculate new sublist to add to {currentUserLoansList}
                 val allUserLoansList = arrayListOf<UserLoan>()
@@ -147,13 +142,23 @@ class HomeViewModel @Inject constructor(
                     allUserLoansList.addAll(it)
                 }
 
-                // Load More data from  allUserLoansList using the new calculated
-                // values of {fromIndex} and {toIndex} and add it to {currentUserLoansList}
-                currentUserLoansList.addAll(allUserLoansList.subList(fromIndex, toIndex))
+                // Add the initial Data from {_userLoansPaginatedList} MutableLiveData
+                val currentUserLoansList = arrayListOf<UserLoan>()
+                _userLoansPaginatedList.value?.let {
+                    currentUserLoansList.addAll(it)
+                }
 
-                // add the results to {_userLoansPaginatedList} MutableLiveData
-                _uiState.postValue(ContentNextPageState)
-                _userLoansPaginatedList.postValue(currentUserLoansList)
+                // If the indexes are greater than the list then don't paginate further since there
+                // is no data to paginate
+                if(fromIndex < allUserLoansList.size || toIndex <= allUserLoansList.size) {
+                    // Load More data from  allUserLoansList using the new calculated
+                    // values of {fromIndex} and {toIndex} and add it to {currentUserLoansList}
+                    currentUserLoansList.addAll(allUserLoansList.subList(fromIndex, toIndex))
+
+                    // add the results to {_userLoansPaginatedList} MutableLiveData
+                    _uiState.postValue(ContentNextPageState)
+                    _userLoansPaginatedList.postValue(currentUserLoansList)
+                }
             }
         }
     }

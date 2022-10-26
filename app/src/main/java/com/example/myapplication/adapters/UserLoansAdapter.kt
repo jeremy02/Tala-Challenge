@@ -1,14 +1,20 @@
 package com.example.myapplication.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.data.remote.responses.UserLoan
 import com.example.myapplication.databinding.UserLoanItemLayoutBinding
 import com.example.myapplication.model.Loan
 
-class UserLoansAdapter(val onUserLoanSelected: (userLoan: UserLoan, position: Int) -> Unit) : RecyclerView.Adapter<UserLoansAdapter.UserLoansViewHolder>() {
+class UserLoansAdapter(private val onUserLoanSelected: OnUserLoanSelected) : RecyclerView.Adapter<UserLoansAdapter.UserLoansViewHolder>() {
+
+    class OnUserLoanSelected(val onUserLoanSelectedListener: (userLoan: UserLoan, position: Int, view: View) -> Unit) {
+        fun onUserLoanSelected(userLoan: UserLoan, position: Int, view: View) = onUserLoanSelectedListener(userLoan, position, view)
+    }
 
     private val userLoanItems: ArrayList<UserLoan> = arrayListOf()
 
@@ -46,6 +52,26 @@ class UserLoansAdapter(val onUserLoanSelected: (userLoan: UserLoan, position: In
                 loanApprovedLayoutVisible = getLoanApprovedVisibility(userLoan.loan)
                 loanPaidLayoutVisible = getLoanPaidVisibility(userLoan.loan)
                 loanDueLayoutVisible = getLoanDueVisibility(userLoan.loan)
+
+                // Click listeners
+                inviteFriendsLayout.setOnClickListener {
+                    onUserLoanSelected.onUserLoanSelected(userLoan, position, inviteFriendsLayout)
+                }
+
+                loanApplyLayout.applyLoanButton.setOnClickListener {
+                    onUserLoanSelected.onUserLoanSelected(userLoan, position, loanApplyLayout.applyLoanButton)
+                }
+
+                loanPaidLayout.paidLoanButton.setOnClickListener {
+                    onUserLoanSelected.onUserLoanSelected(userLoan, position, loanPaidLayout.paidLoanButton)
+                }
+
+
+                // Click listeners
+                loanDueViewsLayout.dueLoanPayButton.setOnClickListener {
+                    Log.e("TAG_2", userLoan.toString())
+                    onUserLoanSelected.onUserLoanSelected(userLoan, position, loanDueViewsLayout.dueLoanPayButton)
+                }
             }
         }
     }

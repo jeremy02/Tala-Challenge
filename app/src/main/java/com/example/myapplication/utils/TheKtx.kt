@@ -1,7 +1,6 @@
 package com.example.myapplication.utils
 
 import android.content.Context
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
@@ -23,7 +22,7 @@ fun View.invisible() {
 }
 
 fun View.showSnack(message: String, action: String = "", actionListener: () -> Unit = {}): Snackbar {
-    var snackbar = Snackbar.make(this, message, Snackbar.LENGTH_SHORT)
+    val snackbar = Snackbar.make(this, message, Snackbar.LENGTH_SHORT)
     if (action != "") {
         snackbar.duration = Snackbar.LENGTH_INDEFINITE
         snackbar.setAction(action) {
@@ -35,8 +34,12 @@ fun View.showSnack(message: String, action: String = "", actionListener: () -> U
     return snackbar
 }
 
-fun Fragment.showToast(message: String) {
-    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+fun Fragment.showToast(message: String, isLong: Boolean) {
+    var duration = Toast.LENGTH_SHORT
+    if(isLong) {
+        duration = Toast.LENGTH_LONG
+    }
+    Toast.makeText(context, message, duration).show()
 }
 
 fun EditText.dismissKeyboard() {

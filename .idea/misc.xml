@@ -7,6 +7,7 @@
         <entry key="..\:/Users/jeremiah/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/content_main.xml" value="0.3120471014492754" />
         <entry key="..\:/Users/jeremiah/AndroidStudioProjects/MyApplication2/app/src/main/res/menu/menu_main.xml" value="0.328042328042328" />
         <entry key="..\:/Users/jeremiah/AndroidStudioProjects/MyApplication2/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2235" />
+        <entry key="..\:/homeproject/Tala Challenge/app/src/main/res/drawable/bg_button_passive.xml" value="0.153" />
         <entry key="..\:/homeproject/Tala Challenge/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/homeproject/Tala Challenge/app/src/main/res/layout/content_apply_loan.xml" value="0.36666666666666664" />
         <entry key="..\:/homeproject/Tala Challenge/app/src/main/res/layout/content_approved_loan.xml" value="0.36666666666666664" />
@@ -14,6 +15,8 @@
         <entry key="..\:/homeproject/Tala Challenge/app/src/main/res/layout/content_main.xml" value="0.36666666666666664" />
         <entry key="..\:/homeproject/Tala Challenge/app/src/main/res/layout/content_paid_loan.xml" value="0.36666666666666664" />
         <entry key="..\:/homeproject/Tala Challenge/app/src/main/res/layout/fragment_home.xml" value="0.17417783191230207" />
+        <entry key="..\:/homeproject/Tala Challenge/app/src/main/res/layout/fragment_news_detail.xml" value="0.365625" />
+        <entry key="..\:/homeproject/Tala Challenge/app/src/main/res/layout/fragment_second.xml" value="0.36666666666666664" />
         <entry key="..\:/homeproject/Tala Challenge/app/src/main/res/layout/user_loan_item_layout.xml" value="0.33" />
       </map>
     </option>

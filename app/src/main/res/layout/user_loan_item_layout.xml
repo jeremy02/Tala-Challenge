@@ -54,7 +54,7 @@
             app:userLoan="@{userLoanItem}"
             app:itemPosition="@{itemPosition}"
             layout="@layout/content_apply_loan"
-            android:visibility="@{loanApplyLayoutVisible ? View.VISIBLE: View.GONE, default=gone}"/>
+            android:visibility="@{loanApplyLayoutVisible ? View.VISIBLE: View.GONE, default=gone}" />
 
         <include
             android:id="@+id/loan_approved_layout"

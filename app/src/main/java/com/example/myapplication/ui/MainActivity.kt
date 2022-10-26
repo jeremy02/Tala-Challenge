@@ -34,7 +34,7 @@ class MainActivity : BaseActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if(destination.id == R.id.FirstFragment) {
+            if(destination.id == R.id.HomeFragment) {
                 binding.talaToolbarLogoImage.visibility = View.VISIBLE
                 supportActionBar?.setDisplayShowTitleEnabled(false)
             } else {

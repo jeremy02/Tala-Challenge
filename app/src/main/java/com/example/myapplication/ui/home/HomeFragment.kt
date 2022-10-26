@@ -11,10 +11,7 @@ import com.example.myapplication.R
 import com.example.myapplication.adapters.UserLoansAdapter
 import com.example.myapplication.base.BaseFragment
 import com.example.myapplication.databinding.FragmentHomeBinding
-import com.example.myapplication.utils.gone
-import com.example.myapplication.utils.showSnack
-import com.example.myapplication.utils.showToast
-import com.example.myapplication.utils.visible
+import com.example.myapplication.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -27,24 +24,47 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private val viewModel: HomeViewModel by viewModels()
 
-    lateinit var userLoansAdapter: UserLoansAdapter
+    private lateinit var userLoansAdapter: UserLoansAdapter
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        setupViews()
-
         initLoadData()
+
+        setupViews()
 
         initDataObservations()
     }
 
     private fun setupViews() {
         context?.let { _ ->
-            // Loans RecyclerView
-            userLoansAdapter = UserLoansAdapter() { userLoan, _ ->
-                Log.e(_TAG, "User Loan Clicked: $userLoan")
-            }
+            // Loans RecyclerView click listeners
+            userLoansAdapter = UserLoansAdapter(UserLoansAdapter.OnUserLoanSelected { userLoan, position, view ->
+                val username = if (!userLoan.username.isNullOrEmpty()) userLoan.username else R.string.app_name
+                val currency = if (!userLoan.userLoanLocale?.currency.isNullOrEmpty()) userLoan.userLoanLocale?.currency else "Kshs"
+                var loanLimit = if (userLoan.userLoanLocale?.loanLimit != null) userLoan.userLoanLocale?.loanLimit else 0
+                var dueLoanAmount = if (userLoan.loan?.due != null) userLoan.loan?.due else 0
+                var level = if (!userLoan.loan?.level.isNullOrEmpty()) userLoan.loan?.level else "new"
+                var status = if (!userLoan.loan?.status.isNullOrEmpty()) userLoan.loan?.status else "new"
+                var approvedAmount = if (userLoan.loan?.approved != null) userLoan.loan?.due else 0
+
+                when (view.id) {
+                    R.id.apply_loan_button -> {
+                        val textMsg = String.format(
+                            getString(R.string.message_load_user_loans_apply_str),
+                            username, currency, loanLimit.toString())
+
+                        showToast( textMsg,true)
+                    }
+                    R.id.invite_friends_layout -> {
+                        val textMsg = String.format(
+                            getString(R.string.message_load_user_loans_apply_str),
+                            username, currency, loanLimit.toString())
+
+                        view.showSnack( textMsg,"OK")
+                    }
+                }
+            })
 
             userLoansAdapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
             binding.recyclerLoans.adapter = userLoansAdapter
@@ -74,7 +94,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 is LoadingNextPageState -> {
                     binding.loadingProgress.gone()
                     binding.loadingMoreProgress.visible()
-                    showToast(getString(R.string.message_load_user_loans_str))
+                    showToast(getString(R.string.message_load_user_loans_str), true)
                 }
 
                 is ContentState -> {

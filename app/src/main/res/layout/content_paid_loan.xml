@@ -13,12 +13,10 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/loan_parent_layout"
+        android:id="@+id/loan_paid_parent_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="2dp"
-        android:clickable="true"
-        android:focusable="true"
         app:cardElevation="2dp"
         app:cardUseCompatPadding="true"
         app:cardPreventCornerOverlap="true"
@@ -84,7 +82,7 @@
                     android:paddingHorizontal="16dp"
                     app:backgroundTint="@color/button_color"
                     android:textColor="@android:color/white"
-                    app:rippleColor="@color/button_color"
+                    app:rippleColor="@android:color/transparent"
                     android:text="@string/apply_for_loan_btn_tag" />
 
             </LinearLayout>
