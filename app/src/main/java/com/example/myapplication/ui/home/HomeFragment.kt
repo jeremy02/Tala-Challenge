@@ -1,9 +1,12 @@
 package com.example.myapplication.ui.home
 
+import android.R.id.shareText
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ShareCompat
 import androidx.core.os.bundleOf
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.viewModels
@@ -16,6 +19,7 @@ import com.example.myapplication.data.remote.responses.UserLoan
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.utils.*
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
@@ -110,12 +114,22 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 findNavController().navigate(R.id.action_HomeFragment_to_WebViewFragment, bundle)
             }
             R.id.invite_friends_layout -> {
-                val textMsg = String.format(
-                    getString(R.string.message_load_user_loans_apply_str),
-                    username, currency, loanLimit.toString())
-
-                view.showSnack( textMsg,"OK")
+                inviteFriends(currency, loanLimit, AppConstants.API.TALA_PLAYSTORE_URL)
             }
+        }
+    }
+
+    private fun inviteFriends(currency: String, loanLimit: Int, talaPlayStoreUrl: String) {
+        val textMsg = String.format(
+            getString(R.string.message_invite_friends_str),
+            currency, loanLimit, talaPlayStoreUrl)
+
+        val shareIntent: Intent = ShareCompat.IntentBuilder.from(requireActivity())
+            .setType("text/plain")
+            .setText(textMsg)
+            .intent
+        if (shareIntent.resolveActivity(requireActivity().packageManager) != null) {
+            startActivity(shareIntent)
         }
     }
 

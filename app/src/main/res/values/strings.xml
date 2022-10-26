@@ -60,4 +60,5 @@
     <string name="message_load_user_loans_paid_apply_str">Hey  %1s. Your loan is fully paid. You can access upto %2s %3s.</string>
     <string name="message_load_user_loans_approved_str">Hey  %1s. Your loan application of %2s %3s has been approved.</string>
     <string name="message_load_user_loans_due_str">Hey  %1s. Your have a loan balance of %2s %3s %4s.</string>
+    <string name="message_invite_friends_str">Did you know you can access loans upto %1s %2s. Download Tala from %3s.</string>
 </resources>

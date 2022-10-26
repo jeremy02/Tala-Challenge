@@ -1,6 +1,7 @@
 package com.example.myapplication.ui.home
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -149,15 +150,19 @@ class HomeViewModel @Inject constructor(
 
                 // If the indexes are greater than the list then don't paginate further since there
                 // is no data to paginate
-                if(fromIndex < allUserLoansList.size || toIndex <= allUserLoansList.size) {
-                    // Load More data from  allUserLoansList using the new calculated
-                    // values of {fromIndex} and {toIndex} and add it to {currentUserLoansList}
-                    currentUserLoansList.addAll(allUserLoansList.subList(fromIndex, toIndex))
-
-                    // add the results to {_userLoansPaginatedList} MutableLiveData
-                    _uiState.postValue(ContentNextPageState)
-                    _userLoansPaginatedList.postValue(currentUserLoansList)
+                if(toIndex >= allUserLoansList.size) {
+                    toIndex = allUserLoansList.size - 1
                 }
+
+                Log.e("toIndex", toIndex.toString())
+
+                // Load More data from  allUserLoansList using the new calculated
+                // values of {fromIndex} and {toIndex} and add it to {currentUserLoansList}
+                currentUserLoansList.addAll(allUserLoansList.subList(fromIndex, toIndex))
+
+                // add the results to {_userLoansPaginatedList} MutableLiveData
+                _uiState.postValue(ContentNextPageState)
+                _userLoansPaginatedList.postValue(currentUserLoansList)
             }
         }
     }
