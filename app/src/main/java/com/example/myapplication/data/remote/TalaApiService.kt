@@ -10,6 +10,6 @@ interface TalaApiService {
     suspend fun loadAllLoans(): ApiResponse<List<UserLoan>>
 
     companion object {
-        const val BASE_API_URL = "https://github.com/jeremy02/Tala-Challenge/blob/main/app/src/main/assets/"
+        const val BASE_API_URL = "https://raw.githubusercontent.com/jeremy02/Fudiess/master/"
     }
 }

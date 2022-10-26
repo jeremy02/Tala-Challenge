@@ -61,7 +61,7 @@ Download the [APK file from here]() on your Android phone and enjoy the Demo App
 * Online/offline experience where if offline the data is downloaded from the API endpoints using Retrofit and Offline fallback to data in assets folder
 * Include Search and filter
 
-## 👨 Developed By
+## Developed By
 
 <a href="https://www.linkedin.com/in/jeremiah-thuku/" target="_blank">
   <img src="https://avatars.githubusercontent.com/u/6048156?v=4" width="70" align="left">

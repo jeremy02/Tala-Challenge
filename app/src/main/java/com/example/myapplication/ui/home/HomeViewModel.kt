@@ -44,7 +44,7 @@ class HomeViewModel @Inject constructor(
     private var pageNumber = 1
     private var itemsPageLimit = AppConstants.API.ITEMS_PER_PAGE
     var fromIndex: Int = 0
-    var toIndex: Int = itemsPageLimit - 1
+    var toIndex: Int = fromIndex - 1 + itemsPageLimit
 
     init {
         // Get or Load all the Loans for all Users
@@ -98,13 +98,12 @@ class HomeViewModel @Inject constructor(
 
     // Get or Load all the Loans for all Users
     private fun fetchAllLoans(page: Int) {
-        _uiState.postValue(if (page == 1) LoadingState else LoadingNextPageState)
-
         // Since Our Api or data has no support for pagination, we are going to simulate pagination
         // By Loading all the data from the API endpoint initially and create a function that
         // Simulates pagination, On Page = 1 load all the data otherwise paginate the loaded data
         // By using the Sublist function
         if(page == 1) {
+            _uiState.postValue(LoadingState)
             viewModelScope.launch {
                 fetchUserLoansUseCase().collect { dataState ->
                     when (dataState) {
@@ -128,40 +127,51 @@ class HomeViewModel @Inject constructor(
                 }
             }
         } else {
+            // Get the full list of user loans data from {_userLoansPaginatedList} MutableLiveData
+            // to calculate new sublist to add to {currentUserLoansList}
+            val allUserLoansList = arrayListOf<UserLoan>()
+            _userLoansList.value?.let {
+                allUserLoansList.addAll(it)
+            }
+
             // get the new fromIndex or starting index of the list
             fromIndex = (page - 1) * itemsPageLimit
-            toIndex = page * itemsPageLimit - 1
+            toIndex = (fromIndex - 1) + itemsPageLimit
 
-            viewModelScope.launch {
-                // Add a Delay for simulation of loading scroll'
-                delay(2500)
+            // If the indexes are greater than the list then don't paginate further since there
+            // is no data to paginate
+            var paginateData = true
+            if(toIndex > allUserLoansList.size - 1) {
+                paginateData = false
+            }
 
-                // Get the full list of user loans data from {_userLoansPaginatedList} MutableLiveData
-                // to calculate new sublist to add to {currentUserLoansList}
-                val allUserLoansList = arrayListOf<UserLoan>()
-                _userLoansList.value?.let {
-                    allUserLoansList.addAll(it)
+            if(paginateData) {
+                _uiState.postValue(LoadingNextPageState)
+
+                viewModelScope.launch {
+                    // Add a Delay for simulation of loading scroll'
+                    delay(500)
+
+                    // Add the initial Data from {_userLoansPaginatedList} MutableLiveData
+                    val currentUserLoansList = arrayListOf<UserLoan>()
+                    _userLoansPaginatedList.value?.let {
+                        currentUserLoansList.addAll(it)
+                    }
+
+
+                    // Load More data from  allUserLoansList using the new calculated
+                    // values of {fromIndex} and {toIndex} and add it to {currentUserLoansList}
+                    currentUserLoansList.addAll(allUserLoansList.subList(fromIndex, toIndex))
+
+                    // add the results to {_userLoansPaginatedList} MutableLiveData
+                    _uiState.postValue(ContentNextPageState)
+                    _userLoansPaginatedList.postValue(currentUserLoansList)
+
+                    // this will prevent from paginating further
+                    if(toIndex >= allUserLoansList.size - 1) {
+                        toIndex = allUserLoansList.size
+                    }
                 }
-
-                // Add the initial Data from {_userLoansPaginatedList} MutableLiveData
-                val currentUserLoansList = arrayListOf<UserLoan>()
-                _userLoansPaginatedList.value?.let {
-                    currentUserLoansList.addAll(it)
-                }
-
-                // If the indexes are greater than the list then don't paginate further since there
-                // is no data to paginate
-                if(toIndex >= allUserLoansList.size) {
-                    toIndex = allUserLoansList.size - 1
-                }
-
-                // Load More data from  allUserLoansList using the new calculated
-                // values of {fromIndex} and {toIndex} and add it to {currentUserLoansList}
-                currentUserLoansList.addAll(allUserLoansList.subList(fromIndex, toIndex))
-
-                // add the results to {_userLoansPaginatedList} MutableLiveData
-                _uiState.postValue(ContentNextPageState)
-                _userLoansPaginatedList.postValue(currentUserLoansList)
             }
         }
     }
