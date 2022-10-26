@@ -25,3 +25,7 @@ Make sure that the project compiles with Java 8 and runs on a Pixel 5 emulator.
 Screen 1A           |  Screen 1B            |  Screen 2
 :-------------------------:|:-------------------------:|:-------------------------:
 ![](public/screen1a.png)  |  ![](public/screen1b.png)  |  ![](public/screen2.png)
+
+Screen 3           |  Screen 4A            |  Screen 4B
+:-------------------------:|:-------------------------:|:-------------------------:
+![](public/screen3.png)  |  ![](public/screen4a.png)  |  ![](public/screen4b.png)
