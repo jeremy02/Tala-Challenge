@@ -3,7 +3,7 @@
 # CASE STUDY FOR Senior Android Engineer (Kotlin) - [Tala](https://tala.co/)
 
 ---
-Description
+###Description
 Given the array of data in testData.json, show a vertical scrolling list of cards for each item,
 matching the provided comps (screen#.png) based on the data. Users should be able to logically
 interact with each card, though what the app does when the user interacts with them is up to
@@ -16,7 +16,7 @@ of any assumptions you made which you would have otherwise asked about under nor
 circumstances. You won't be penalized or asked to redo the test based on any noted incorrect
 assumptions.
 
-Deliverable
+####Deliverable
 Host the project on github or bitbucket and send us a link. This project should be set up to run
 on any machine, so it should not have any unresolved or local references.
 Make sure that the project compiles with Java 8 and runs on a Pixel 5 emulator.
