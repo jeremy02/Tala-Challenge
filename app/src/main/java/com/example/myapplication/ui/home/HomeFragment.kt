@@ -1,12 +1,10 @@
 package com.example.myapplication.ui.home
 
-import android.R.id.shareText
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ShareCompat
 import androidx.core.os.bundleOf
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.viewModels
@@ -66,11 +64,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         val username = if (!userLoan.username.isNullOrEmpty()) userLoan.username else R.string.app_name
         val currency = if (!userLoan.userLoanLocale?.currency.isNullOrEmpty()) userLoan.userLoanLocale?.currency else "Kshs"
         val loanLimit = if (userLoan.userLoanLocale?.loanLimit != null) userLoan.userLoanLocale?.loanLimit else 0
-        var dueLoanAmount = if (userLoan.loan?.due != null) userLoan.loan?.due else 0
+        val dueLoanAmount = if (userLoan.loan?.due != null) userLoan.loan?.due else 0
         var level = if (!userLoan.loan?.level.isNullOrEmpty()) userLoan.loan?.level else "new"
         var status = if (!userLoan.loan?.status.isNullOrEmpty()) userLoan.loan?.status else "new"
-        var approvedAmount = if (userLoan.loan?.approved != null) userLoan.loan?.approved else 0
-        var dueLoanDate = if (userLoan.loan?.dueDate != null){
+        val approvedAmount = if (userLoan.loan?.approved != null) userLoan.loan?.approved else 0
+        val dueLoanDate = if (userLoan.loan?.dueDate != null){
             formatDate(userLoan.loan?.dueDate!!)
         } else{
             R.string.due_loan_date_tag.toString()
@@ -105,6 +103,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
                 view.showSnack( textMsg,"Pay")
             }
+            R.id.loan_status_button -> {
+                val textMsg = String.format(
+                    getString(R.string.message_load_user_loans_status_str),
+                    username, status, level)
+
+                view.showSnack( textMsg,"Pay")
+            }
             R.id.due_loan_how_to_pay_button -> {
                 val bundle = bundleOf("URL_TO_LOAD" to AppConstants.API.TALA_HOW_TO_PAY_URL)
                 findNavController().navigate(R.id.action_HomeFragment_to_WebViewFragment, bundle)
@@ -113,24 +118,26 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 val bundle = bundleOf("URL_TO_LOAD" to AppConstants.API.TALA_FAQS_URL)
                 findNavController().navigate(R.id.action_HomeFragment_to_WebViewFragment, bundle)
             }
+            R.id.loan_stories_button -> {
+                val bundle = bundleOf("USER_LOAN_TO_LOAD" to userLoan)
+                findNavController().navigate(R.id.action_HomeFragment_to_NewsDetailFragment, bundle)
+            }
             R.id.invite_friends_layout -> {
                 inviteFriends(currency, loanLimit, AppConstants.API.TALA_PLAYSTORE_URL)
             }
         }
     }
 
-    private fun inviteFriends(currency: String, loanLimit: Int, talaPlayStoreUrl: String) {
+    private fun inviteFriends(currency: String?, loanLimit: Int?, talaPlayStoreUrl: String) {
         val textMsg = String.format(
             getString(R.string.message_invite_friends_str),
             currency, loanLimit, talaPlayStoreUrl)
 
-        val shareIntent: Intent = ShareCompat.IntentBuilder.from(requireActivity())
-            .setType("text/plain")
-            .setText(textMsg)
-            .intent
-        if (shareIntent.resolveActivity(requireActivity().packageManager) != null) {
-            startActivity(shareIntent)
-        }
+        val sharingIntent = Intent(Intent.ACTION_SEND)
+        sharingIntent.type = "text/plain"
+        sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Invite Friends")
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, textMsg)
+        requireActivity().startActivity(Intent.createChooser(sharingIntent, "Invite friends using ..."))
     }
 
     private fun initLoadData() {

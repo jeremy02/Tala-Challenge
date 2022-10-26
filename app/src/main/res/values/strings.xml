@@ -55,10 +55,13 @@
 
     <string name="news_detail_default_locale_tag">KE</string>
     <string name="news_detail_default_date_tag">December 14, 2020</string>
+    <string name="news_detail_default_title_tag">Elevating Women at Tala and Beyond</string>
+    <string name="news_detail_default_description_tag">Today, 50% of Tala small business customers globally are women. We’re proud to support these women and their businesses with credit and other financial services. But, we still have a long way to go. \n\nDespite representing half of the world’s population and potential, women and girls are often still marginalized. Men earn on around 23% more than women globally and a recent World Bank study on the potential of female entrepreneurship inAfrica showed that female entrepreneurs’ incomes are only two-thirds of that of male entrepreneurs on average. \n\nAdding to that, COVID-19 is expected to push an estimated 47 million additional women and girls into extreme poverty and further widen the gender poverty gap.</string>
 
     <string name="message_load_user_loans_apply_str">Hey  %1s. You can access upto %2s %3s.</string>
     <string name="message_load_user_loans_paid_apply_str">Hey  %1s. Your loan is fully paid. You can access upto %2s %3s.</string>
     <string name="message_load_user_loans_approved_str">Hey  %1s. Your loan application of %2s %3s has been approved.</string>
     <string name="message_load_user_loans_due_str">Hey  %1s. Your have a loan balance of %2s %3s %4s.</string>
+    <string name="message_load_user_loans_status_str">Hey  %1s. Your loan status is %2s, and level %3s.</string>
     <string name="message_invite_friends_str">Did you know you can access loans upto %1s %2s. Download Tala from %3s.</string>
 </resources>

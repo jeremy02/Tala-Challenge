@@ -53,8 +53,12 @@ class UserLoansAdapter(private val onUserLoanSelected: OnUserLoanSelected) : Rec
                 loanDueLayoutVisible = getLoanDueVisibility(userLoan.loan)
 
                 // Click listeners
-                inviteFriendsLayout.setOnClickListener {
-                    onUserLoanSelected.onUserLoanSelected(userLoan, position, inviteFriendsLayout)
+                loanStatusButton.setOnClickListener {
+                    onUserLoanSelected.onUserLoanSelected(userLoan, position, loanStatusButton)
+                }
+
+                loanStoriesButton.setOnClickListener {
+                    onUserLoanSelected.onUserLoanSelected(userLoan, position, loanStoriesButton)
                 }
 
                 loanApplyLayout.applyLoanButton.setOnClickListener {
@@ -79,6 +83,10 @@ class UserLoansAdapter(private val onUserLoanSelected: OnUserLoanSelected) : Rec
 
                 viewFaqsLayout.setOnClickListener {
                     onUserLoanSelected.onUserLoanSelected(userLoan, position, viewFaqsLayout)
+                }
+
+                inviteFriendsLayout.setOnClickListener {
+                    onUserLoanSelected.onUserLoanSelected(userLoan, position, inviteFriendsLayout)
                 }
             }
         }

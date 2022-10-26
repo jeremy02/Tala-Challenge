@@ -154,7 +154,7 @@
                 android:textStyle="bold"
                 app:backgroundTint="@android:color/transparent"
                 app:elevation="4dp"
-                app:rippleColor="@color/button_color"
+                app:rippleColor="@android:color/transparent"
                 app:layout_constraintHorizontal_bias="0.0"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 app:layout_constraintEnd_toEndOf="@+id/loan_status_tag_caption"

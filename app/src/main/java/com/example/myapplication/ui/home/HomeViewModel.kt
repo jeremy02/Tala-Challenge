@@ -10,6 +10,7 @@ import com.example.myapplication.data.remote.responses.Locales
 import com.example.myapplication.data.remote.responses.UserLoan
 import com.example.myapplication.data.usecases.FetchLocalesUseCase
 import com.example.myapplication.data.usecases.FetchUserLoansUseCase
+import com.example.myapplication.utils.AppConstants
 import com.wajahatkarim3.imagine.data.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -41,7 +42,7 @@ class HomeViewModel @Inject constructor(
 
     // will be used for pagination or simulate pagination
     private var pageNumber = 1
-    private var itemsPageLimit = 15 // AppConstants.API.ITEMS_PER_PAGE
+    private var itemsPageLimit = AppConstants.API.ITEMS_PER_PAGE
     var fromIndex: Int = 0
     var toIndex: Int = itemsPageLimit - 1
 
@@ -153,8 +154,6 @@ class HomeViewModel @Inject constructor(
                 if(toIndex >= allUserLoansList.size) {
                     toIndex = allUserLoansList.size - 1
                 }
-
-                Log.e("toIndex", toIndex.toString())
 
                 // Load More data from  allUserLoansList using the new calculated
                 // values of {fromIndex} and {toIndex} and add it to {currentUserLoansList}
