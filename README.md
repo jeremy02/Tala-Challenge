@@ -29,3 +29,18 @@ Screen 1A           |  Screen 1B            |  Screen 2
 Screen 3           |  Screen 4A            |  Screen 4B
 :-------------------------:|:-------------------------:|:-------------------------:
 ![](public/screen3.png)  |  ![](public/screen4a.png)  |  ![](public/screen4b.png)
+
+## Architecture
+* Built with Modern Android Development practices
+* Utilized Usecase, Repository pattern for data
+* The case study expected data to be downloaded from the assets folder, but have taken the liberty of demonstrating both use-cases where
+  we get the data from [json file from here](https://github.com/jeremy02/Tala-Challenge/blob/main/app/src/main/assets/testData.json?raw=true) here using retrofit and also the locales data from the assets/locales.json file
+
+## 📱 Download Demo on Android
+Download the [APK file from here]() on your Android phone and enjoy the Demo App :)
+
+## TODO
+* Includes unit tests for Use cases, Repository, ViewModels, API Service response.
+* Complete the various screens so as to create interactive elements which behave as expected for users
+* Online/offline experience where if offline the data is downloaded from the API endpoints using Retrofit and Offline fallback to data in assets folder
+* Include Search and filter
