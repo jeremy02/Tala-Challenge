@@ -20,3 +20,8 @@ assumptions.
 Host the project on github or bitbucket and send us a link. This project should be set up to run
 on any machine, so it should not have any unresolved or local references.
 Make sure that the project compiles with Java 8 and runs on a Pixel 5 emulator.
+
+#### Screens as Provided
+Screen 1A           |  Screen 1B            |  Screen 2
+:-------------------------:|:-------------------------:|:-------------------------:
+![](public/screen1a.png)  |  ![](public/screen1b.png)  |  ![](public/screen2.png)
