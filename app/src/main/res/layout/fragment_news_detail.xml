@@ -74,11 +74,10 @@
                 android:id="@+id/news_detail_image_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="20dp"
+                app:cardCornerRadius="0dp"
                 app:cardElevation="2dp"
                 app:cardUseCompatPadding="false"
                 app:cardPreventCornerOverlap="true"
-                android:background="?android:selectableItemBackground"
                 app:layout_constraintStart_toStartOf="@+id/news_detail_top_layout"
                 app:layout_constraintTop_toBottomOf="@+id/news_detail_top_layout">
 
