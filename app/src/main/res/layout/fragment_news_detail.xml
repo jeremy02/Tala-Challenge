@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.news.NewsDetailFragment"
+    tools:ignore="RtlSymmetry,HardcodedText,ContentDescription, MissingConstraints">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_color">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/news_detail_top_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp">
+
+               <LinearLayout
+                   android:id="@+id/news_detail_top_captions_layout"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal"
+                   android:layout_alignParentTop="true">
+
+                   <TextView
+                       android:id="@+id/news_detail_locale_tag"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:textSize="18sp"
+                       android:textStyle="bold"
+                       android:paddingHorizontal="16dp"
+                       android:paddingVertical="2dp"
+                       android:textAllCaps="true"
+                       android:textColor="@color/white"
+                       android:background="@drawable/bg_rounded_corners"
+                       android:text="@string/news_detail_default_locale_tag"/>
+
+                   <TextView
+                       android:id="@+id/news_detail_tag"
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="1"
+                       android:textSize="14sp"
+                       android:textStyle="bold"
+                       android:gravity="end|center_vertical"
+                       android:textColor="@color/primaryTextColor"
+                       android:text="@string/news_detail_default_date_tag"/>
+
+               </LinearLayout>
+
+                <TextView
+                    android:id="@+id/news_detail_title_tag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/news_detail_top_captions_layout"
+                    android:gravity="start|center_vertical"
+                    android:paddingVertical="16dp"
+                    android:text="@string/news_detail_default_title_tag"
+                    android:textColor="@color/teal_800"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/news_detail_image_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="false"
+                app:cardPreventCornerOverlap="true"
+                app:layout_constraintStart_toStartOf="@+id/news_detail_top_layout"
+                app:layout_constraintTop_toBottomOf="@+id/news_detail_top_layout">
+
+                <ImageView
+                    android:id="@+id/news_detail_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/img_story_ke"/>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/lblExplore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/news_detail_default_description_tag"
+                android:textSize="16sp"
+                android:padding="16dp"
+                android:singleLine="false"
+                android:textStyle="normal"
+                android:layout_marginVertical="8dp"
+                android:textColor="@color/primaryTextColor"
+                app:layout_constraintStart_toStartOf="@+id/news_detail_image_layout"
+                app:layout_constraintTop_toBottomOf="@+id/news_detail_image_layout" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

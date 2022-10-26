@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="ContentDescription">
+
+    <data>
+        <import type="android.view.View"/>
+
+        <variable
+            name="userLoan"
+            type="com.example.myapplication.data.remote.responses.UserLoan" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/loan_approved_parent_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="2dp"
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true"
+        app:cardPreventCornerOverlap="true"
+        android:background="?android:selectableItemBackground">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:id="@+id/loan_approved_img_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:background="@color/primaryColor">
+
+                <ImageView
+                    android:id="@+id/loan_approved_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:adjustViewBounds="false"
+                    android:scaleType="fitCenter"
+                    android:scaleX="0.75"
+                    android:scaleY="0.75"
+                    android:src="@drawable/img_loan_status_approved"
+                    app:tint="@color/white"/>
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:id="@+id/loan_approved_views_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/loan_approved_img_layout"
+                android:padding="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/approved_loan_tag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:text="@string/approved_loan_tag"/>
+
+                <TextView
+                    android:id="@+id/approved_loan_tag_caption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/approved_loan_tag_caption"
+                    app:stringToFormat="@{@string/approved_loan_tag_caption}"
+                    app:stringToFormatText="@{``+userLoan.userLoanLocale.currency ?? `Kshs`}"
+                    app:stringToFormatText2="@{``+userLoan.loan.approved ?? `0`}"/>
+
+                <Button
+                    android:id="@+id/approved_loan_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:elevation="10dp"
+                    android:textSize="16sp"
+                    android:paddingVertical="10dp"
+                    android:paddingHorizontal="16dp"
+                    app:backgroundTint="@color/button_color"
+                    android:textColor="@android:color/white"
+                    app:rippleColor="@android:color/transparent"
+                    android:text="@string/approved_for_loan_btn_tag" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

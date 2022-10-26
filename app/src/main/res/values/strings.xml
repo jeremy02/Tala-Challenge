@@ -1,0 +1,67 @@
+<resources>
+    <string name="app_name">Tala</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="home_fragment_label">Tala</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="news_detail_fragment_label">News Detail</string>
+    <string name="web_view_fragment_label">Tala</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+
+    <string name="action_retry_str">Retry</string>
+    <string name="message_no_network_connected_str">No network connected!</string>
+    <string name="message_something_went_wrong_str">Something went wrong!</string>
+    <string name="message_search_results_for_str">Search results for %1s</string>
+
+    <string name="apply_for_loan_tag">Apply for a loan</string>
+    <string name="apply_loan_tag_caption">Qualify for loans up to %1s %2s over time.</string>
+    <string name="apply_loan_tag_caption_2">Repay on time to get loans up to %1s %2s.</string>
+    <string name="apply_for_loan_btn_tag">Apply Now</string>
+
+    <string name="loan_status_tag">My Tala Status</string>
+    <string name="loan_status_tag_caption">Track your progress over time</string>
+    <string name="loan_status_tag_caption_2">Grow your limit up to %1s %2s.</string>
+    <string name="loan_status_btn_tag">View Status</string>
+
+    <string name="invite_friends_tag">Invite friends, earn money!</string>
+
+    <string name="loan_stories_tag">\"Tala helped me with my dream\"</string>
+    <string name="loan_stories_btn_tag">Read More</string>
+
+    <string name="view_faqs_tag">View FAQs or send us a message</string>
+
+    <string name="approved_loan_tag">Your loan application is approved!</string>
+    <string name="approved_loan_tag_caption">You have been approved for %1s %2s.</string>
+    <string name="approved_for_loan_btn_tag">View Loan Offer</string>
+
+    <string name="paid_loan_tag">Your loan is fully paid!</string>
+    <string name="paid_loan_tag_caption">Apply for another loan any time you want and grow your limit.</string>
+
+    <string name="due_loan_tag">Your are on track!</string>
+    <string name="due_loan_amount_tag">%1s %2s</string>
+    <string name="due_loan_date_tag">is due tomorrow.</string>
+    <string name="due_loan_date_tag_due">is due %1s.</string>
+    <string name="due_loan_date_tag_past">was due %1s.</string>
+    <string name="due_loan_pay_btn_tag">Make a payment</string>
+    <string name="due_loan_how_to_pay_button_btn_tag">How to Repay</string>
+
+    <string name="message_load_user_loans_str">Loading more loans...</string>
+
+    <string name="news_detail_default_locale_tag">KE</string>
+    <string name="news_detail_default_date_tag">December 14, 2020</string>
+    <string name="news_detail_default_title_tag">Elevating Women at Tala and Beyond</string>
+    <string name="news_detail_default_description_tag">Today, 50% of Tala small business customers globally are women. We’re proud to support these women and their businesses with credit and other financial services. But, we still have a long way to go. \n\nDespite representing half of the world’s population and potential, women and girls are often still marginalized. Men earn on around 23% more than women globally and a recent World Bank study on the potential of female entrepreneurship inAfrica showed that female entrepreneurs’ incomes are only two-thirds of that of male entrepreneurs on average. \n\nAdding to that, COVID-19 is expected to push an estimated 47 million additional women and girls into extreme poverty and further widen the gender poverty gap.</string>
+
+    <string name="message_load_user_loans_apply_str">Hey  %1s. You can access upto %2s %3s.</string>
+    <string name="message_load_user_loans_paid_apply_str">Hey  %1s. Your loan is fully paid. You can access upto %2s %3s.</string>
+    <string name="message_load_user_loans_approved_str">Hey  %1s. Your loan application of %2s %3s has been approved.</string>
+    <string name="message_load_user_loans_due_str">Hey  %1s. Your have a loan balance of %2s %3s %4s.</string>
+    <string name="message_load_user_loans_status_str">Hey  %1s. Your loan status is %2s, and level %3s.</string>
+    <string name="message_invite_friends_str">Did you know you can access loans upto %1s %2s. Download Tala from %3s.</string>
+</resources>
