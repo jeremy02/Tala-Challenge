@@ -37,7 +37,7 @@ Screen 3           |  Screen 4A            |  Screen 4B
   we get the data from [json file from here](https://github.com/jeremy02/Tala-Challenge/blob/main/app/src/main/assets/testData.json?raw=true) here using retrofit and also the locales data from the assets/locales.json file
 
 ## 📱 Download Demo on Android
-Download the [APK file from here]() on your Android phone and enjoy the Demo App :)
+Download the [APK file from here](https://github.com/jeremy02/Tala-Challenge/blob/main/public/app-debug.apk?raw=true) on your Android phone and enjoy the Demo App :)
 
 ## Built With 🛠
 - [Kotlin](https://kotlinlang.org/) - Currently official programming language for Android development.
