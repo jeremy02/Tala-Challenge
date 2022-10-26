@@ -1,15 +1,18 @@
 package com.example.myapplication.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.adapters.UserLoansAdapter
 import com.example.myapplication.base.BaseFragment
+import com.example.myapplication.data.remote.responses.UserLoan
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.utils.*
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,30 +43,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         context?.let { _ ->
             // Loans RecyclerView click listeners
             userLoansAdapter = UserLoansAdapter(UserLoansAdapter.OnUserLoanSelected { userLoan, position, view ->
-                val username = if (!userLoan.username.isNullOrEmpty()) userLoan.username else R.string.app_name
-                val currency = if (!userLoan.userLoanLocale?.currency.isNullOrEmpty()) userLoan.userLoanLocale?.currency else "Kshs"
-                var loanLimit = if (userLoan.userLoanLocale?.loanLimit != null) userLoan.userLoanLocale?.loanLimit else 0
-                var dueLoanAmount = if (userLoan.loan?.due != null) userLoan.loan?.due else 0
-                var level = if (!userLoan.loan?.level.isNullOrEmpty()) userLoan.loan?.level else "new"
-                var status = if (!userLoan.loan?.status.isNullOrEmpty()) userLoan.loan?.status else "new"
-                var approvedAmount = if (userLoan.loan?.approved != null) userLoan.loan?.due else 0
-
-                when (view.id) {
-                    R.id.apply_loan_button -> {
-                        val textMsg = String.format(
-                            getString(R.string.message_load_user_loans_apply_str),
-                            username, currency, loanLimit.toString())
-
-                        showToast( textMsg,true)
-                    }
-                    R.id.invite_friends_layout -> {
-                        val textMsg = String.format(
-                            getString(R.string.message_load_user_loans_apply_str),
-                            username, currency, loanLimit.toString())
-
-                        view.showSnack( textMsg,"OK")
-                    }
-                }
+                loanAdapterClick(userLoan, position, view)
             })
 
             userLoansAdapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
@@ -74,6 +54,67 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight) {
                     viewModel.loadMoreUserLoansData()
                 }
+            }
+        }
+    }
+
+    private fun loanAdapterClick(userLoan: UserLoan, position: Int, view: View) {
+        val username = if (!userLoan.username.isNullOrEmpty()) userLoan.username else R.string.app_name
+        val currency = if (!userLoan.userLoanLocale?.currency.isNullOrEmpty()) userLoan.userLoanLocale?.currency else "Kshs"
+        val loanLimit = if (userLoan.userLoanLocale?.loanLimit != null) userLoan.userLoanLocale?.loanLimit else 0
+        var dueLoanAmount = if (userLoan.loan?.due != null) userLoan.loan?.due else 0
+        var level = if (!userLoan.loan?.level.isNullOrEmpty()) userLoan.loan?.level else "new"
+        var status = if (!userLoan.loan?.status.isNullOrEmpty()) userLoan.loan?.status else "new"
+        var approvedAmount = if (userLoan.loan?.approved != null) userLoan.loan?.approved else 0
+        var dueLoanDate = if (userLoan.loan?.dueDate != null){
+            formatDate(userLoan.loan?.dueDate!!)
+        } else{
+            R.string.due_loan_date_tag.toString()
+        }
+
+        when (view.id) {
+            R.id.apply_loan_button -> {
+                val textMsg = String.format(
+                    getString(R.string.message_load_user_loans_apply_str),
+                    username, currency, loanLimit.toString())
+
+                view.showSnack( textMsg,"Apply")
+            }
+            R.id.paid_loan_button -> {
+                val textMsg = String.format(
+                    getString(R.string.message_load_user_loans_paid_apply_str),
+                    username, currency, loanLimit.toString())
+
+                view.showSnack( textMsg,"Apply")
+            }
+            R.id.approved_loan_button -> {
+                val textMsg = String.format(
+                    getString(R.string.message_load_user_loans_approved_str),
+                    username, currency, approvedAmount.toString())
+
+                view.showSnack( textMsg,"OK")
+            }
+            R.id.due_loan_pay_button -> {
+                val textMsg = String.format(
+                    getString(R.string.message_load_user_loans_due_str),
+                    username, currency, dueLoanAmount, dueLoanDate)
+
+                view.showSnack( textMsg,"Pay")
+            }
+            R.id.due_loan_how_to_pay_button -> {
+                val bundle = bundleOf("URL_TO_LOAD" to AppConstants.API.TALA_HOW_TO_PAY_URL)
+                findNavController().navigate(R.id.action_HomeFragment_to_WebViewFragment, bundle)
+            }
+            R.id.view_faqs_layout -> {
+                val bundle = bundleOf("URL_TO_LOAD" to AppConstants.API.TALA_FAQS_URL)
+                findNavController().navigate(R.id.action_HomeFragment_to_WebViewFragment, bundle)
+            }
+            R.id.invite_friends_layout -> {
+                val textMsg = String.format(
+                    getString(R.string.message_load_user_loans_apply_str),
+                    username, currency, loanLimit.toString())
+
+                view.showSnack( textMsg,"OK")
             }
         }
     }

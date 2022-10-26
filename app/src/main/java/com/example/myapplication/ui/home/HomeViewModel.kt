@@ -9,7 +9,6 @@ import com.example.myapplication.data.remote.responses.Locales
 import com.example.myapplication.data.remote.responses.UserLoan
 import com.example.myapplication.data.usecases.FetchLocalesUseCase
 import com.example.myapplication.data.usecases.FetchUserLoansUseCase
-import com.example.myapplication.utils.AppConstants
 import com.wajahatkarim3.imagine.data.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay

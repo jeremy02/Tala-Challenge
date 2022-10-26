@@ -6,6 +6,7 @@
     <string name="home_fragment_label">Tala</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="news_detail_fragment_label">News Detail</string>
+    <string name="web_view_fragment_label">Tala</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
@@ -55,5 +56,8 @@
     <string name="news_detail_default_locale_tag">KE</string>
     <string name="news_detail_default_date_tag">December 14, 2020</string>
 
-    <string name="message_load_user_loans_apply_str">Hey  %1s. Your loan application has been received. You can access upto %2s %3s.</string>
+    <string name="message_load_user_loans_apply_str">Hey  %1s. You can access upto %2s %3s.</string>
+    <string name="message_load_user_loans_paid_apply_str">Hey  %1s. Your loan is fully paid. You can access upto %2s %3s.</string>
+    <string name="message_load_user_loans_approved_str">Hey  %1s. Your loan application of %2s %3s has been approved.</string>
+    <string name="message_load_user_loans_due_str">Hey  %1s. Your have a loan balance of %2s %3s %4s.</string>
 </resources>

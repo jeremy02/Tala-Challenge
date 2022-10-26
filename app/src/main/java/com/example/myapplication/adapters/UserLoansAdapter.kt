@@ -1,7 +1,6 @@
 package com.example.myapplication.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -66,11 +65,20 @@ class UserLoansAdapter(private val onUserLoanSelected: OnUserLoanSelected) : Rec
                     onUserLoanSelected.onUserLoanSelected(userLoan, position, loanPaidLayout.paidLoanButton)
                 }
 
+                loanApprovedLayout.approvedLoanButton.setOnClickListener {
+                    onUserLoanSelected.onUserLoanSelected(userLoan, position, loanApprovedLayout.approvedLoanButton)
+                }
 
-                // Click listeners
                 loanDueViewsLayout.dueLoanPayButton.setOnClickListener {
-                    Log.e("TAG_2", userLoan.toString())
                     onUserLoanSelected.onUserLoanSelected(userLoan, position, loanDueViewsLayout.dueLoanPayButton)
+                }
+
+                loanDueViewsLayout.dueLoanHowToPayButton.setOnClickListener {
+                    onUserLoanSelected.onUserLoanSelected(userLoan, position, loanDueViewsLayout.dueLoanHowToPayButton)
+                }
+
+                viewFaqsLayout.setOnClickListener {
+                    onUserLoanSelected.onUserLoanSelected(userLoan, position, viewFaqsLayout)
                 }
             }
         }

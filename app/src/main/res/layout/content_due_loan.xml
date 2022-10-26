@@ -81,7 +81,7 @@
                     android:text="@string/due_loan_pay_btn_tag"
                     app:backgroundTint="@color/button_color"
                     android:textColor="@android:color/white"
-                    app:rippleColor="@color/button_color"/>
+                    app:rippleColor="@android:color/transparent"/>
 
                 <Button
                     android:id="@+id/due_loan_how_to_pay_button"
@@ -92,8 +92,8 @@
                     android:textStyle="bold"
                     app:elevation="10dp"
                     android:layout_marginStart="10dp"
-                    app:rippleColor="@color/button_color"
                     app:backgroundTint="@android:color/transparent"
+                    app:rippleColor="@android:color/transparent"
                     android:text="@string/due_loan_how_to_pay_button_btn_tag"
                     style="@style/Widget.MaterialComponents.Button.TextButton" />
 

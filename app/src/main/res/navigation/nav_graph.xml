@@ -16,6 +16,10 @@
             app:destination="@id/NewsDetailFragment" />
 
         <action
+            android:id="@+id/action_HomeFragment_to_WebViewFragment"
+            app:destination="@id/WebViewFragment" />
+
+        <action
             android:id="@+id/action_HomeFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
     </fragment>
@@ -32,6 +36,17 @@
     </fragment>
 
     <fragment
+        android:id="@+id/WebViewFragment"
+        android:name="com.example.myapplication.ui.web_views.WebViewFragment"
+        android:label="@string/web_view_fragment_label"
+        tools:layout="@layout/fragment_web_view">
+
+        <action
+            android:id="@+id/action_WebViewFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+    </fragment>
+
+    <fragment
         android:id="@+id/SecondFragment"
         android:name="com.example.myapplication.SecondFragment"
         android:label="@string/second_fragment_label"
@@ -41,4 +56,5 @@
             android:id="@+id/action_SecondFragment_to_HomeFragment"
             app:destination="@id/HomeFragment" />
     </fragment>
+
 </navigation>
